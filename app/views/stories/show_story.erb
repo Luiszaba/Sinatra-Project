@@ -1,0 +1,7 @@
+<h1>your stories</h1>
+
+<% @user.stories.all %>
+<% @stories.each do |story|%>
+<%= story.title %>
+<%= story.content %>
+<% end %>
