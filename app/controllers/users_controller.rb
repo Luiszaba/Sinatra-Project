@@ -6,29 +6,32 @@ class UsersController < ApplicationController
         erb :'users/show'
     end
 
-    get '/sessions/login' do
+    get '/session/login' do
         if !logged_in?
-            erb :"/sessions/login"
+            erb :"/session/login"
+            
         else 
             redirect "/users/show"
         end
     end
 
-    post '/sessions' do 
-        user = Users.find_by(username: params[:username])
-        if user && user.authenticate(params[:password])
-            session[:user_id] = user.id
-            redirect '/users/show'
+    post '/session' do 
+        @user = Users.find_by(username: params[:username])
+        if @user && @user.authenticate(params[:password])
+            session[:user_id] = @user.id
+            puts params
+            redirect "/users/show"
         else
-            erb :'/sessions/login'
+            erb :"/session/login"
         end
     end
 
     get '/registrations/signup' do 
         if !logged_in?
-            erb :'/registrations/signup'
+            erb :"/registrations/signup"
         else 
-            redirect '/users/show'
+            redirect "/users/show"
+
         end
     end
 
@@ -40,18 +43,20 @@ class UsersController < ApplicationController
             @user.save
             puts params
             session[:user_id] = @user.id
-            redirect '/users/show'
+            redirect "/users/show"
         end
     end
 
     get '/logout' do
         if logged_in?
             session.clear
-            redirect '/sessions/login'
+            redirect "/session/login"
         else 
-            redirect 'sessions/login'
+            redirect "/"
         end
     end
+
+    
 end
 
 

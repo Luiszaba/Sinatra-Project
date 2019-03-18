@@ -5,21 +5,20 @@ class ApplicationController < Sinatra::Base
         set :views, 'app/views'
         
         enable :sessons
-        set :session_secret, "secret"
+        set :session_secret, SecureRandom.hex(64) 
     end
 
     get '/' do 
       erb :index
     end
 
-    helpers do
-        
+helpers do        
     def logged_in?
-      !!current_user
-    end
+			!!session[:user_id]
+		end
 
-     def current_user
-      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
-     end
+ 		def current_user
+			Users.find_by(session[:user_id])
     end
   end
+end

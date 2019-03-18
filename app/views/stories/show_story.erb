@@ -1,7 +1,8 @@
-<h1>your stories</h1>
+<h1>Your Chillers</h1>
 
 <% @user.stories.all %>
 <% @stories.each do |story|%>
-<%= story.title %>
-<%= story.content %>
+<label for="Title:">Title:</label><%= story.title %></br>
+<label for="Content:">Story:</label><%= story.content %></br>
 <% end %>
+

@@ -1,58 +1,80 @@
 class StoriesController < ApplicationController
     
-    get '/stories' do
-        @stories = Stories.all
-        erb :"/stories/public_stories"
-    end
-
-    get 'stories/new' do
+    get '/stories/public_stories' do
         if logged_in?
-            erb :"/stories/new_story"
+            @stories = Stories.all
+            erb :"/stories/public_stories"
         else 
-            redirect "/login"
+            redirect "/session/login"
         end
     end
 
-    post '/stories' do
-        if logged_in?
-            if params[:content].empty?
-                redirect '/login'
-            else
-                @story = current_user.stories.build(content: params[:content])
-                if @story.save
-                    redirect '/stories/#{@story.id}'
-                else 
-                    redirect '/stories/new_story'
-                end
-            end
+    get '/stories/new' do
+        if !logged_in?
+            redirect "/session/login"
         else
-            redirect '/login'
-        end
-    end
-
-    get '/stories/:id' do
-        @stories = Stories.find(params[:id])
-        erb :'/stories/show_stories'
-    end
-
-    get '/stories/:id/edit' do
-        if !logged_in
-            erb :"stories/edit_story"
-        else 
-            redirect "/login"
-        end
-    end
-
-    delete '/stories/:id/delete' do 
-        if logged_in?
-            @story = Stories.find_by_id([:id])
-            if @story && @story.user == current_user
-                @story.delete
-            end
-            redirect '/stories/show_story'
-        else 
-            redirect '/login'
-        end
+            redirect  "/stories/new"
     end
 end
 
+    post '/stories' do
+        if logged_in?
+            if params == ""
+                redirect "/stories/new"
+            else
+            @story = current_user.stories.build(params)
+            @story.user_id = session[:user_id]
+            @story.save
+            puts params
+            redirect "/stories/#{@story.id}"
+            end
+        else 
+            redirect "/session/login"
+        end
+    end
+
+    get '/stories/:id/edit_story' do 
+        if logged_in?
+            @story = Stories.find_by_id(params[:id])
+            if @story && @story.user == current_user
+                erb :"/stories/edit_story"
+            else
+                redirect "/stories/show_story"
+            end
+            redirect "/session/login"
+        end
+    end
+
+    patch'/stories/:id' do 
+        if !logged_in?
+            redirect "/session/login"
+        if params == ""
+            redirect "/stories/#{params[:id]}/edit_story"
+        else
+            @story = Stories.find_by_id(params[:id])
+            if @story && @story.user == current_user
+                if @story.update(params)
+                        redirect "stories/#{@story.id}/edit_story"
+                end
+            else 
+                redirect "stories/show"
+            end
+        end
+    else 
+        redirect "/session/login"
+    end
+end
+
+    delete '/stories/:id/delete' do
+        if logged_in?
+            @story = Stories.find_by_id(params[:id])
+            if @story && @story.user == current_user
+                @story.delete
+            end
+            redirect to "/stories/show_story"
+        else
+        redirect to "/session/login"
+      end
+    end
+
+end

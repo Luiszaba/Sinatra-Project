@@ -1,6 +1,6 @@
 class Users < ActiveRecord::Base
+  
     has_many :stories
-
     has_secure_password
     validates_presence_of :username, :email, :password
 
