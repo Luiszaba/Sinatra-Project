@@ -15,6 +15,7 @@ Once logged in User will view the '/users/show' page.  This will be the users ho
     <a href="/stories/edit_story">Make Changes</a></br>
     <a href="/stories/public_stories">View Stories</a></br>
     <a href="/logout">Sign Out</a>
+<br>
 
 The selections available are -
 1. Create new story
