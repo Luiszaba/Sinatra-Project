@@ -10,8 +10,9 @@
 ####Tech support unable to find solution.####
 ####Most probable cause is corrupt config.ru file.  System corrupted!!!!####
 ####Solution not found####
+####Suspected cause of config.ru is linked to persistant runners in linux subsystem.  Possibly do to forced shutdown####
 ####Tech support suggests reinstalling Linux subsystem.####
 ####Linux subsystem, Rails, Postgres, RVM installed on new partition####
 3/16/2019####added LICENSE, README & CODE OF CONDUCT####
-3/17/2019####unknown error related to <%= @user.username %>.  Sinatra claims noclassmethod for username.  Pry reveals user.id, user.username, and user.password params are correct.####
+3/17/2019####unknown error related to <%= @user.username %>.  Sinatra claims noclassmethod for username.  Pry reveals user.id, user.username, and user.password params in sessions are correct.####
 ####patch/delete now both in edit_story.erb####

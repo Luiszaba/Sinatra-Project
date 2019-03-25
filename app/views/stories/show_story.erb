@@ -1,8 +1,11 @@
-<h1>Your Chillers</h1>
+<h1>Your Tale</h1>
 
-<% @user.stories.all %>
-<% @stories.each do |story|%>
-<label for="Title:">Title:</label><%= story.title %></br>
-<label for="Content:">Story:</label><%= story.content %></br>
-<% end %>
+Title: <%= @story.title %><br>
+Story: <%= @story.content %><br>
+
+
+<a href="/stories/new"><button type="button">Create New Story</button></br>
+<a href="/users/show"><button type="button">Return</button></br>
+
+
 

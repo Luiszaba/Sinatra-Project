@@ -1,13 +1,14 @@
 <h1>Make Changes Here</h1>
-<%= @stories.id %>
+<%= @story.id %>
 
-<form action="/stories/<%= @stories.id %>" method="POST">
-    <input id="hidden" type="hidden" name="_method" value="PATCH">
-    <input type="text" name="content" value="<% @stories.content %>">
-    <input type="text" name="title" value="<% @stories.title%>">
+<form action="/stories/<%= @story.id %>" method="POST">
+    <input id="hidden" type="hidden"  name="_method" value="PATCH">
+    <input type="text" name="content" value="<% @story.content %>">
+    <input type="text" name="title"   value="<% @story.title %>">
     <input type="submit" value="Submit Changes">
 </form>
-<form action="/stories/<%= @stories.id %>" method="POST"> 
+<br>
+<form action="/stories/<%= @story.id %>" method="POST"> 
     <input id="hidden" type="hidden" name="_method" value="DELETE">
     <input type="submit" value="Remove">
 </form>

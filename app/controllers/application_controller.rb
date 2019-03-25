@@ -4,10 +4,10 @@ class ApplicationController < Sinatra::Base
         set :public_folder, 'public'
         set :views, 'app/views'
         
-        enable :sessons
-        set :session_secret, SecureRandom.hex(64) 
-    end
+        enable :sessions
+        set :session_secret, SecureRandom.hex(64)
 
+    end
     get '/' do 
       erb :index
     end
@@ -18,7 +18,7 @@ helpers do
 		end
 
  		def current_user
-			Users.find_by(session[:user_id])
+			User.find(session[:user_id])
     end
   end
 end

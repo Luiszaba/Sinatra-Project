@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     
     
     get '/users/:slug' do
-        @user = Users.find_by_slug(params[:slug])
+        @user = User.find_by_slug(params[:slug])
         erb :'users/show'
     end
 
@@ -11,16 +11,17 @@ class UsersController < ApplicationController
             erb :"/session/login"
             
         else 
-            redirect "/users/show"
+             redirect "/users/#{current_user.slug}"
         end
     end
 
     post '/session' do 
-        @user = Users.find_by(username: params[:username])
+        @user = User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
             puts params
-            redirect "/users/show"
+            redirect "/users/#{@user.slug}"
+
         else
             erb :"/session/login"
         end
@@ -30,7 +31,7 @@ class UsersController < ApplicationController
         if !logged_in?
             erb :"/registrations/signup"
         else 
-            redirect "/users/show"
+             redirect "/users/#{current_user.slug}"
 
         end
     end
@@ -39,11 +40,11 @@ class UsersController < ApplicationController
         if params[:username].empty? || params[:email].empty? || params[:password].empty?
             redirect '/registrations/signup'
         else
-            @user = Users.new(:username => params[:username], :email => params[:email], :password => params[:password])
+            @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
             @user.save
             puts params
             session[:user_id] = @user.id
-            redirect "/users/show"
+            redirect "/users/#{@user.slug}"
         end
     end
 

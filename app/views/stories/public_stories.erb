@@ -1,6 +1,9 @@
-<h1>Read What Other`'`s Wrote So Far</h1>
+<h1>Read What Others Wrote So Far</h1>
 
-<% @stories.each do |s| %>
-    <label for="Title:" >Title:</label>< %= s.title %></br>
-    <label for="Content:" >Story:</label>< %= s.content %></br>
+<% @stories.each_with_index do |story, i| %>
+    <a href="/stories/<%= story.id %>">
+    <%= i+1 %>. <%= story.title %> </br>
     <% end %>
+<br>
+    <a href="/stories/new"><button type="button">Write and Share</button></br>
+    <a href="/users/show"><button type="button">Return</button>
