@@ -25,6 +25,7 @@ The selections available are -
 
 Future implimentations include a voting system, CSS, and links to users Youtube channel. 
 
+Please read Logfile for archived development information
 
 ## Contributing
 
