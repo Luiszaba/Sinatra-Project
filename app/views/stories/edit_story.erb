@@ -1,5 +1,9 @@
 <h1>Make Changes Here</h1>
-<%= @story.id %>
+<%= @story.each_with_index do |s, i| %>
+<%= i+1 %>. <%= s.title %>
+<%= s.content%>
+
+
 
 <form action="/stories/<%= @story.id %>" method="POST">
     <input id="hidden" type="hidden"  name="_method" value="PATCH">
@@ -7,10 +11,3 @@
     <input type="text" name="title"   value="<% @story.title %>">
     <input type="submit" value="Submit Changes">
 </form>
-<br>
-<form action="/stories/<%= @story.id %>" method="POST"> 
-    <input id="hidden" type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Remove">
-</form>
-
-

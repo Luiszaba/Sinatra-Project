@@ -19,7 +19,7 @@ class StoriesController < ApplicationController
 
     post '/stories' do
         if logged_in?
-            if params == ""
+            if params.empty?
                 redirect "/stories/new"
             else
             @story = Story.create(title: params[:title], content: params[:content])
@@ -35,7 +35,7 @@ class StoriesController < ApplicationController
 
     get '/stories/:id' do
         if logged_in?
-            @story = Story.find(params[:id])
+            @story = Story.find_by(params[:id])
             erb :"/stories/show_story"
         else
             redirect "/sessions/login"
@@ -45,8 +45,9 @@ class StoriesController < ApplicationController
     get '/stories/:id/edit_story' do 
         if logged_in?
             @story = Story.find(params[:id])
-            if @story && @story.user == current_user
-                erb :"/stories/edit_story"
+            if @story && @story.user_id == current_user.id
+                erb :"/stories/#{params[:id]}/edit_story"
+            end
             else
             redirect "/session/login"
         end
@@ -55,16 +56,16 @@ class StoriesController < ApplicationController
     patch'/stories/:id' do 
         if !logged_in?
             redirect "/session/login"
-        if params == ""
+        if params.empty?
             redirect "/stories/#{params[:id]}/edit_story"
         else
-            @story = Story.find_by_id(params[:id])
-            if @story && @story.user == current_user
+            @story = Story.find(params[:id])
+            if @story && @story.user_id == current_user.id
                 if @story.update(params)
                         redirect "stories/#{@story.id}/edit_story"
                 end
             else 
-                redirect "/stories/show"
+                redirect "/stories/show_story"
             end
         end
     else 
@@ -74,16 +75,16 @@ end
 
     delete '/stories/:id/delete' do
         if logged_in?
-            @story = Story.find_by_id(params[:id])
-            if @story && @story.user == current_user
+            @story = Story.find(params[:id])
+            if @story && @story.user_id == current_user.id
                 @story.delete
-            end
-            redirect to "/stories/show_story"
+            redirect to "/users/show"
         else
         redirect to "/session/login"
       end
     end
 end
 end
+
 
 
