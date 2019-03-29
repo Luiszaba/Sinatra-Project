@@ -35,7 +35,7 @@ class StoriesController < ApplicationController
 
     get '/stories/:id' do
         if logged_in?
-            @story = Story.find_by(params[:id])
+            @story = Story.find(params[:id])
             erb :"/stories/show_story"
         else
             redirect "/sessions/login"
@@ -46,30 +46,31 @@ class StoriesController < ApplicationController
         if logged_in?
             @story = Story.find(params[:id])
             if @story && @story.user_id == current_user.id
-                erb :"/stories/#{params[:id]}/edit_story"
-            end
+                erb :"/stories/edit_story"
             else
-            redirect "/session/login"
+            redirect "/stories/public_stories"
         end
+    else 
+        redirect "/session/login"
     end
+end
 
     patch'/stories/:id' do 
         if !logged_in?
             redirect "/session/login"
-        if params.empty?
+        elsif params.empty?
             redirect "/stories/#{params[:id]}/edit_story"
         else
             @story = Story.find(params[:id])
             if @story && @story.user_id == current_user.id
-                if @story.update(params)
-                        redirect "stories/#{@story.id}/edit_story"
-                end
+                params.delete("_method")
+                if @story.update(title: params[:title], content: params[:content])
+                        redirect "stories/#{@story.id}"
             else 
-                redirect "/stories/show_story"
+                redirect "/stories/#{params[:id]}"
             end
-        end
-    else 
-        redirect "/session/login"
+        else 
+            redirect "/stories/#{params[:id]}"
     end
 end
 
@@ -81,10 +82,13 @@ end
             redirect to "/users/show"
         else
         redirect to "/session/login"
-      end
+        end
     end
 end
 end
+end
+
+
 
 
 
