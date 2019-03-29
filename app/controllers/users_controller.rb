@@ -11,9 +11,18 @@ class UsersController < ApplicationController
             erb :"/session/login"
             
         else 
-             redirect "/users/#{current_user.slug}"
+            redirect "/users/#{current_user.slug}"
         end
     end
+
+    get '/users/show' do
+        if logged_in?
+            redirect "/users/#{current_user.slug}"
+        else
+            erb :"/session/login"
+        end
+    end
+
 
     post '/session' do 
         @user = User.find_by(username: params[:username])
