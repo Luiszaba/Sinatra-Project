@@ -1,18 +1,33 @@
-3/12/2019####Contruction begins - Project will be based on writers posting stories with the idea of up/down voting user submitted work####
-3/12/2019####Databases created for "Spooky Tales" ####
-3/13/2019####Personal Issues resulted in delayed development####
-3/14/2019####Login/Out sessions complete####
-3/15/201####<%= @user.username %> is not functional - reasons unknown#### 
-3/15/2019####Debugging will commence in the morning of 3/16/2019####
-3/15/2019####Daemon error!!! Cause unknown####
-3/16/2019####Daemon error fixed####
-3/16/2019####Tech support sought for config.ru error post daemon error####
+3/12/2019
+####Contruction begins - Project will be based on writers posting stories with the idea of up/down voting user submitted work####
+3/12/2019
+####Databases created for "Spooky Tales" ####
+3/13/2019
+####Personal Issues resulted in delayed development####
+3/14/2019
+####Login/Out sessions complete####
+3/15/2019
+####<%= @user.username %> is not functional - reasons unknown#### 
+3/15/2019
+####Debugging will commence in the morning of 3/16/2019####
+3/15/2019
+####Daemon error!!! Cause unknown####
+3/16/2019
+####Daemon error fixed####
+3/16/2019
+####Tech support sought for config.ru error post daemon error####
 ####Tech support unable to find solution.####
 ####Most probable cause is corrupt config.ru file.  System corrupted!!!!####
 ####Solution not found####
 ####Suspected cause of config.ru is linked to persistant runners in linux subsystem.  Possibly do to forced shutdown####
 ####Tech support suggests reinstalling Linux subsystem.####
 ####Linux subsystem, Rails, Postgres, RVM installed on new partition####
-3/16/2019####added LICENSE, README & CODE OF CONDUCT####
-3/17/2019####unknown error related to <%= @user.username %>.  Sinatra claims noclassmethod for username.  Pry reveals user.id, user.username, and user.password params in sessions are correct.####
+3/16/2019
+####added LICENSE, README & CODE OF CONDUCT####
+3/17/2019
+####unknown error related to <%= @user.username %>.  Sinatra claims noclassmethod for username.  Pry reveals user.id, user.username, and user.password params in sessions are correct.####
 ####patch/delete now both in edit_story.erb####
+3/29/2019
+####Systems running.  Needs CSS####
+####DELETE ROUTE NOT WORKING####
+####Unknown reason for route not being found.  DELETE /stories/:id HTTP not found in controller.  Controller has DELETE route####

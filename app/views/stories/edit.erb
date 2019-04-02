@@ -1,0 +1,17 @@
+<h1>Make Changes Here</h1>
+
+<b>Title:</b>
+<%= @story.title %><br>
+<b>Content:</b>
+<%= @story.content %>
+
+
+
+<form action="/stories/<%= @story.id %>" method="POST">
+<input type="hidden" id="hidden" name="_method" value="PATCH">
+<h3>Title:</h3><input type="text" name="title" value="<% @story.title %>">
+<br>
+<h3>Content:</h3><textarea rows="5" cols="30" name="content" id="content" value="<% @story.content %>"></textarea>
+<br>
+<input type="submit" value="Submit Changes"><input type="reset" value="Clear Changes">
+</form>

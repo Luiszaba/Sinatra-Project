@@ -26,9 +26,8 @@ class UsersController < ApplicationController
         @user = User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            puts params
+        puts params
             redirect "/users/#{@user.slug}"
-
         else
             erb :"/session/login"
         end
@@ -39,7 +38,6 @@ class UsersController < ApplicationController
             erb :"/registrations/signup"
         else 
              redirect "/users/#{current_user.slug}"
-
         end
     end
 
