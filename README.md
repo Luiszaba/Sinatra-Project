@@ -3,8 +3,8 @@
 This website is created to act as a database for user created horror stories.
 Users will create an account using their email, username, and password.  The credentials are required and will result in redirects to the signup page if any are blank.  
 
-Users can create an account
-Users can log in
+Users can create an account<br>
+Users can log in<br>
 Users can logout
 Users password will be secure
 Users session will be protected
