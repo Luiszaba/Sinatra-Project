@@ -16,11 +16,10 @@ User can not make edits to other users stories<br>
 
 Once logged in User will view the '/users/show' page.  This will be the users homepage.  '/users/show' appears as
 
-``<h3>Hello,  <%= current_user.username %>. What would you like to do today? </h3><br>``
-    ``<a href="/stories/new">Write A Spooky Story</a><br>``
-    ``<a href="/stories/index">View Stories</a><br>``
-    ``<a href="/logout">Sign Out</a>``
-<br>
+``<h3>Hello,  <%= current_user.username %>. What would you like to do today? </h3>``<br>
+    ``<a href="/stories/new">Write A Spooky Story</a>``<br>
+    ``<a href="/stories/index">View Stories</a>``<br>
+    ``<a href="/logout">Sign Out</a>``<br>
 
 The selections available are -
 1. Create new story
