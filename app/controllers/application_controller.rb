@@ -6,8 +6,8 @@ class ApplicationController < Sinatra::Base
         
         enable :sessions
         set :session_secret, "SecureRandom.hex(64)"
-
     end
+
     get '/' do 
       erb :index
     end
@@ -19,7 +19,7 @@ helpers do
 		end
 
  		def current_user
-			User.find(session[:user_id])
+			@user ||= User.find(session[:user_id])
     end
   end
 end
